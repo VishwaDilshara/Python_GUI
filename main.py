@@ -1,6 +1,26 @@
 import tkinter
 from tkinter import ttk
 
+
+def enter_data():
+    #user informations
+    firstname = first_name_entry.get()
+    lastname = last_name_entry.get()
+    title = title_combobox.get()
+    age = age_spinbox.get()
+    nationality = nationality_combobox.get()
+
+    #Course informations
+    registration_status = reg_status_var.get()
+    numcourses = numcourses_spinbox.get()
+    numsemesters = numsemesters_spinbox.get()
+
+
+    print("First name: ", firstname, "Last name:", lastname)
+    print("Title: ", title, "Age: ", age, "Nationality: ", nationality)
+    print("# Courses: ", numcourses, "# Semesters: ", numsemesters)
+    print("Registration status" , registration_status)
+
 window = tkinter.Tk()
 window.title("Data Entry Form")
 
@@ -43,7 +63,11 @@ courses_frame = tkinter.LabelFrame(frame)
 courses_frame.grid(row=1, column=0, sticky="news", padx=20, pady=20)
 
 registered_label = tkinter.Label(courses_frame, text="Registration status")
-registered_check = tkinter.Checkbutton(courses_frame, text="Currently Registered")
+
+reg_status_var = tkinter.StringVar()
+registered_check = tkinter.Checkbutton(courses_frame, text="Currently Registered", 
+                                       variable=reg_status_var, onvalue="Registered", offvalue="Not registered")
+
 registered_label.grid(row=0, column=0)
 registered_check.grid(row=1, column=0)
 
@@ -68,7 +92,7 @@ terms_check = tkinter.Checkbutton(terms_frame, text="I accept terms and conditio
 terms_check.grid(row=0, column=0)
 
 #buttons
-button = tkinter.Button(frame, text="Enter data")
+button = tkinter.Button(frame, text="Enter data", command=enter_data)
 button.grid(row=3, column=0, sticky="news", padx=20, pady=10)
 
 
