@@ -3,24 +3,28 @@ from tkinter import ttk
 
 
 def enter_data():
+    accepted = accepted_var.get()
+
+    if accepted=="Accepted":
     #user informations
-    firstname = first_name_entry.get()
-    lastname = last_name_entry.get()
-    title = title_combobox.get()
-    age = age_spinbox.get()
-    nationality = nationality_combobox.get()
+        firstname = first_name_entry.get()
+        lastname = last_name_entry.get()
+        title = title_combobox.get()
+        age = age_spinbox.get()
+        nationality = nationality_combobox.get()
 
-    #Course informations
-    registration_status = reg_status_var.get()
-    numcourses = numcourses_spinbox.get()
-    numsemesters = numsemesters_spinbox.get()
+        #Course informations
+        registration_status = reg_status_var.get()
+        numcourses = numcourses_spinbox.get()
+        numsemesters = numsemesters_spinbox.get()
 
 
-    print("First name: ", firstname, "Last name:", lastname)
-    print("Title: ", title, "Age: ", age, "Nationality: ", nationality)
-    print("# Courses: ", numcourses, "# Semesters: ", numsemesters)
-    print("Registration status" , registration_status)
-
+        print("First name: ", firstname, "Last name:", lastname)
+        print("Title: ", title, "Age: ", age, "Nationality: ", nationality)
+        print("# Courses: ", numcourses, "# Semesters: ", numsemesters)
+        print("Registration status" , registration_status)
+    else:
+        print("Error")
 window = tkinter.Tk()
 window.title("Data Entry Form")
 
@@ -64,7 +68,7 @@ courses_frame.grid(row=1, column=0, sticky="news", padx=20, pady=20)
 
 registered_label = tkinter.Label(courses_frame, text="Registration status")
 
-reg_status_var = tkinter.StringVar()
+reg_status_var = tkinter.StringVar(value="Not Registered")
 registered_check = tkinter.Checkbutton(courses_frame, text="Currently Registered", 
                                        variable=reg_status_var, onvalue="Registered", offvalue="Not registered")
 
@@ -88,7 +92,10 @@ for widget in courses_frame.winfo_children():
 terms_frame = tkinter.LabelFrame(frame, text="Terms & Conditions")
 terms_frame.grid(row=2, column=0, sticky="news", padx=20, pady=10)
 
-terms_check = tkinter.Checkbutton(terms_frame, text="I accept terms and conditions")
+accept_var = tkinter.StringVar(value="Not Accepted")
+terms_check = tkinter.Checkbutton(terms_frame, text="I accept terms and conditions",
+                                  variable=accept_var, onvalue="Accepted", offvalue="Not Accepted")
+
 terms_check.grid(row=0, column=0)
 
 #buttons
